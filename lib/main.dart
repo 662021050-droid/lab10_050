@@ -8,16 +8,22 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Minimal Login',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // แก้ไขจุดที่ 1: เติม ColorScheme นำหน้า .fromSeed
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        // กำหนดโทนสีฟ้า-น้ำเงินพาสเทล
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF5D9CEC),
+          primary: const Color(0xFF4A90E2),
+          secondary: const Color(0xFFD1E3FF),
+        ),
+        scaffoldBackgroundColor: const Color(0xFFF5F9FF), // พื้นหลังฟ้าอ่อนมากๆ
       ),
-      // แก้ไขจุดที่ 2: ถ้ายังไม่ได้สร้าง LoginPage ให้ใช้ MyHomePage ไปก่อนครับ
       home: const LoginPage(),
     );
   }

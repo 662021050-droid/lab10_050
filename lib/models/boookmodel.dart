@@ -1,31 +1,30 @@
-// To parse this JSON data, do
-//
-//     final bookmodel = bookmodelFromJson(jsonString);
-
 import 'dart:convert';
 
-Bookmodel bookmodelFromJson(String str) => Bookmodel.fromJson(json.decode(str));
+BookModel bookModelFromJson(String str) => BookModel.fromJson(json.decode(str));
 
-String bookmodelToJson(Bookmodel data) => json.encode(data.toJson());
+String bookModelToJson(BookModel data) => json.encode(data.toJson());
 
-class Bookmodel {
+class BookModel {
   int id;
   String title;
   String author;
   int publishedYear;
 
-  Bookmodel({
+  BookModel({
     required this.id,
     required this.title,
     required this.author,
     required this.publishedYear,
   });
 
-  factory Bookmodel.fromJson(Map<String, dynamic> json) => Bookmodel(
-    id: json["id"],
-    title: json["title"],
-    author: json["author"],
-    publishedYear: json["published_year"],
+  factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
+    id: json["id"] is String ? int.parse(json["id"]) : json["id"],
+    title: json["title"].toString(),
+    author: json["author"].toString(),
+    // แก้จุดนี้: ใช้การเช็คประเภทข้อมูล (Data Type)
+    publishedYear: json["published_year"] is String
+        ? int.parse(json["published_year"])
+        : json["published_year"],
   );
 
   Map<String, dynamic> toJson() => {
